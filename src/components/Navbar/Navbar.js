@@ -20,6 +20,15 @@ function Navbar() {
 
   const HandleLogout = () => {
     localStorage.removeItem("auth_token");
+    if (localStorage.getItem("admin")) 
+    {
+      localStorage.removeItem("admin");
+    }
+    if (localStorage.getItem("name")) 
+    {
+      localStorage.removeItem("name");
+    }
+    
     window.location.href = "/login";
   };
 
@@ -52,7 +61,7 @@ function Navbar() {
           <div className="collapse navbar-collapse" id="navbarNavDropdown">
             <div className="centre-div">
               <ul className="navbar-nav">
-                {!isLoggedIn && (
+                {!isLoggedIn && !isAdminLoggedin && (
                   <li className="nav-item">
                     <Link
                       className="nav-link"
@@ -64,7 +73,7 @@ function Navbar() {
                   </li>
                 )}
 
-                {!isLoggedIn && (
+                {!isLoggedIn && !isAdminLoggedin &&  (
                   <li className="nav-item">
                     <Link
                       className="nav-link"
@@ -99,6 +108,7 @@ function Navbar() {
                     </Link>
                   </li>
                 )}
+
                 {isLoggedIn && (
                   <li className="log-out">
                     <Link
@@ -149,7 +159,7 @@ function Navbar() {
                   </li>
                 )}
 
-                {isLoggedIn && (
+                {isLoggedIn || isAdminLoggedin && (
                   <li className="log-out">
                     <Link
                       className="nav-link"
