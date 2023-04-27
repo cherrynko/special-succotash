@@ -11,6 +11,7 @@ const HandleLogout = () => {
 
 function Navbar() {
   const [user, setUser] = useState("");
+  const isAdminLoggedin = localStorage.getItem("admin");
   const isLoggedIn = localStorage.getItem("auth_token");
   const firstname = localStorage.getItem("name");
   const navigate = useNavigate();
@@ -50,7 +51,7 @@ function Navbar() {
           <div className="collapse navbar-collapse" id="navbarNavDropdown">
             <div className="centre-div">
               <ul className="navbar-nav">
-                {!isLoggedIn && (
+                {!isLoggedIn && !isAdminLoggedin && (
                   <li className="nav-item">
                     <Link
                       className="nav-link"
@@ -62,7 +63,7 @@ function Navbar() {
                   </li>
                 )}
 
-                {!isLoggedIn && (
+                {!isLoggedIn && !isAdminLoggedin && (
                   <li className="nav-item">
                     <Link
                       className="nav-link"
@@ -74,7 +75,7 @@ function Navbar() {
                   </li>
                 )}
 
-                {isLoggedIn && (
+                {isLoggedIn && !isAdminLoggedin &&  (
                   <li className="log-out">
                     <Link
                       className="nav-link"
@@ -86,7 +87,7 @@ function Navbar() {
                   </li>
                 )}
 
-                {isLoggedIn && (
+                {isLoggedIn && !isAdminLoggedin && (
                   <li className="log-out">
                     <Link
                       className="nav-link"
@@ -97,7 +98,8 @@ function Navbar() {
                     </Link>
                   </li>
                 )}
-                {isLoggedIn && (
+
+                {isLoggedIn && !isAdminLoggedin && (
                   <li className="log-out">
                     <Link
                       className="nav-link"
@@ -108,7 +110,7 @@ function Navbar() {
                     </Link>
                   </li>
                 )}
-                {isLoggedIn && (
+                {isLoggedIn && !isAdminLoggedin &&  (
                   <li className="log-out">
                     <Link
                       className="nav-link"
@@ -119,7 +121,7 @@ function Navbar() {
                     </Link>
                   </li>
                 )}
-                {isLoggedIn && (
+                {isLoggedIn && !isAdminLoggedin && (
                   <li className="log-out">
                     <Link
                       className="nav-link"
@@ -135,7 +137,7 @@ function Navbar() {
 
             <div className="right-div">
               <ul className="navbar-nav">
-                {isLoggedIn && (
+                {isLoggedIn && !isAdminLoggedin &&  (
                   <li className="cart">
                     <Link
                       className="nav-link"
@@ -147,7 +149,7 @@ function Navbar() {
                   </li>
                 )}
 
-                {isLoggedIn && (
+                {isLoggedIn || isAdminLoggedin && (
                   <li className="log-out">
                     <Link
                       className="nav-link"
